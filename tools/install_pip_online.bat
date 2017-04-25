@@ -1,2 +1,2 @@
-python -m pip install -U pip setuptools
+python -m pip install -U pip
 pause

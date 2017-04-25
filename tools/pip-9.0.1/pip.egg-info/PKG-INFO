@@ -1,4 +1,4 @@
-Metadata-Version: 1.2
+Metadata-Version: 1.0
 Name: pip
 Version: 9.0.1
 Summary: The PyPA recommended tool for installing Python packages.
@@ -58,4 +58,3 @@ Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: Implementation :: PyPy
-Requires-Python: >=2.6,!=3.0.*,!=3.1.*,!=3.2.*
