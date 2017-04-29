@@ -9,32 +9,32 @@ import image
 # 计算两个文件的差异率，差异率越高表明图片内容的差异越大
 def calc_difference_rate(left_image, right_image):
     try:
-	    i1 = Image.open(left_image)
-		i2 = Image.open(right_image)
-		assert i1.mode == i2.mode, "Different kind of images."
-		assert i1.size == i2.size, "Different size."
-	except:
-	    print(u"calc_difference_rate 打开文件发生异常！")
-		
-	pairs = izip(i1.getdata(), i2.getdata())
-	if len(i1.getbands()) == 1:
-	    dif = sum(abs(p1-p2)) for p1, p2 in pairs)
-	else:
-	    dif = sum(abs(c1-c2)) for p1, p2 in pairs for c1, c2 in zip(p1, p2))
-		ncomponetns = i1.size[0] * i1.size[1]*3
-	Difference = (dif / 255.0 *100)/ncomponetns
-	print u"差异率为: ", Difference
-	return Difference
+        i1 = Image.open(left_image)
+        i2 = Image.open(right_image)
+        assert i1.mode == i2.mode, "Different kind of images."
+        assert i1.size == i2.size, "Different size."
+    except:
+        print(u"calc_difference_rate 打开文件发生异常！")
+        
+    pairs = izip(i1.getdata(), i2.getdata())
+    if len(i1.getbands()) == 1:
+        dif = sum(abs(p1-p2) for p1, p2 in pairs)
+    else:
+        dif = sum(abs(c1-c2) for p1, p2 in pairs for c1, c2 in zip(p1, p2))
+        ncomponetns = i1.size[0] * i1.size[1]*3
+    Difference = (dif / 255.0 *100)/ncomponetns
+    print u"差异率为: ", Difference
+    return Difference
 
 # 按文件的创建时间为关键字,查找一个当前最新的文件,若没有文件则返回空的路径
 def get_prvious_file_path(base_dir):
     l = os.listdir(base_dir)
-	l = sort(key = lambda fn: os.path.getmtime(base_dir + fn) if not os.path.isdir(base_dir + fn) else 0)
+    l = sort(key = lambda fn: os.path.getmtime(base_dir + fn) if not os.path.isdir(base_dir + fn) else 0)
 
-	if len(l) > 0:
-	    return l[-1]
-	else:
-	    return ""
+    if len(l) > 0:
+        return l[-1]
+    else:
+        return ""
 
 if  __name__  == "__main__":
     temp_path = "c:\\temp\\"
@@ -45,28 +45,28 @@ if  __name__  == "__main__":
 
     while 1: # 循环执行截图
         try:
-		    pre_file_path = get_prvious_file_path(temp_path)
-			timeTemp = time.time()  # 1970年之后经过的浮点描述，得到时间戳
-			timeTempNext = time.localtime(timeTemp) # 将一个时间戳转换成一个当前时区的struct_time
-			timeNow = time.strftime("%Y-%m-%d% %H-%M-%S", timeTempNext) # 根据指定的格式化字符串输出			
+            pre_file_path = get_prvious_file_path(temp_path)
+            timeTemp = time.time()  # 1970年之后经过的浮点描述，得到时间戳
+            timeTempNext = time.localtime(timeTemp) # 将一个时间戳转换成一个当前时区的struct_time
+            timeNow = time.strftime("%Y-%m-%d% %H-%M-%S", timeTempNext) # 根据指定的格式化字符串输出         
             
             savePath = temp_path + timeNow + ".jpg" # 拼成图片的文件路径
             pic = ImageGrab.grab() # 全屏截图
             pic.save(savePath) # 保存图片
-			print timeNow
-			difference = 0.0
-			
-			if pre_file_path == "":
-			    print(u"没有文件可以比较")
-			else:
-			    difference = calc_difference_rate(temp_path + "\\" + pre_file_path, savePath)
-				
-			if difference < 0.001 and pre_file_path <> "":
-			    os.remove(savePath)
-				print(u"文件基本无变化，删除最近保存的一个文件")
-			else:
-			    print(u"差异率较大，保存新的文件")
-				
-			time.sleep(30) # sleep函数的参数是秒					
+            print timeNow
+            difference = 0.0
+            
+            if pre_file_path == "":
+                print(u"没有文件可以比较")
+            else:
+                difference = calc_difference_rate(temp_path + "\\" + pre_file_path, savePath)
+                
+            if difference < 0.001 and pre_file_path <> "":
+                os.remove(savePath)
+                print(u"文件基本无变化，删除最近保存的一个文件")
+            else:
+                print(u"差异率较大，保存新的文件")
+                
+            time.sleep(30) # sleep函数的参数是秒                   
         except:
             time.sleep(90)
