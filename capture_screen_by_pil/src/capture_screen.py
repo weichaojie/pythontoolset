@@ -4,7 +4,7 @@ from PIL import ImageGrab  # 用于截图并生成文件
 import time  # 以时间字符串作为文件名称
 import os,os.path,datetime
 from itertools import izip
-import image
+import Image
 
 # 计算两个文件的差异率，差异率越高表明图片内容的差异越大
 def calc_difference_rate(left_image, right_image):
@@ -29,28 +29,36 @@ def calc_difference_rate(left_image, right_image):
 # 按文件的创建时间为关键字,查找一个当前最新的文件,若没有文件则返回空的路径
 def get_prvious_file_path(base_dir):
     l = os.listdir(base_dir)
-    l = sort(key = lambda fn: os.path.getmtime(base_dir + fn) if not os.path.isdir(base_dir + fn) else 0)
+    print(l)
+
+    if len(l) == 0:
+        return "";
+    try:
+        l.sort(key = lambda fn: os.path.getmtime(base_dir + fn) if not os.path.isdir(base_dir + fn) else 0)
+    except:
+        print(u"get_prvious_file_path 对文件目录以时间排序发生异常")
 
     if len(l) > 0:
         return l[-1]
-    else:
-        return ""
 
 if  __name__  == "__main__":
     temp_path = "c:\\temp\\"
     try:
-        os.mkdir(path)
+        os.mkdir(temp_path)
     except:
-        print(path)
+        print(temp_path)
 
     while 1: # 循环执行截图
         try:
             pre_file_path = get_prvious_file_path(temp_path)
+            print (u"前一个文件的全路径为:")
+            print(pre_file_path)
             timeTemp = time.time()  # 1970年之后经过的浮点描述，得到时间戳
             timeTempNext = time.localtime(timeTemp) # 将一个时间戳转换成一个当前时区的struct_time
-            timeNow = time.strftime("%Y-%m-%d% %H-%M-%S", timeTempNext) # 根据指定的格式化字符串输出         
+            timeNow = time.strftime("%Y-%m-%d %H-%M-%S", timeTempNext) # 根据指定的格式化字符串输出
             
             savePath = temp_path + timeNow + ".jpg" # 拼成图片的文件路径
+            print(savePath)
             pic = ImageGrab.grab() # 全屏截图
             pic.save(savePath) # 保存图片
             print timeNow
@@ -67,6 +75,6 @@ if  __name__  == "__main__":
             else:
                 print(u"差异率较大，保存新的文件")
                 
-            time.sleep(30) # sleep函数的参数是秒                   
+            time.sleep(6) # sleep函数的参数是秒
         except:
-            time.sleep(90)
+            time.sleep(6)
