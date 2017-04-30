@@ -29,7 +29,6 @@ def calc_difference_rate(left_image, right_image):
 # 按文件的创建时间为关键字,查找一个当前最新的文件,若没有文件则返回空的路径
 def get_prvious_file_path(base_dir):
     l = os.listdir(base_dir)
-    print(l)
 
     if len(l) == 0:
         return "";
@@ -69,12 +68,12 @@ if  __name__  == "__main__":
             else:
                 difference = calc_difference_rate(temp_path + "\\" + pre_file_path, savePath)
                 
-            if difference < 0.001 and pre_file_path <> "":
+            if difference < 0.002 and pre_file_path <> "":
                 os.remove(savePath)
                 print(u"文件基本无变化，删除最近保存的一个文件")
             else:
                 print(u"差异率较大，保存新的文件")
                 
-            time.sleep(6) # sleep函数的参数是秒
+            time.sleep(30) # sleep函数的参数是秒
         except:
-            time.sleep(6)
+            time.sleep(60)
