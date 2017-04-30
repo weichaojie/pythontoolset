@@ -9,6 +9,7 @@ futurize.py
 pasteurize.py
 pytest.ini
 requirements_py26.txt
+setup.cfg
 setup.py
 docs/Makefile
 docs/automatic_conversion.rst
