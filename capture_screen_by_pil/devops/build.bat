@@ -1,11 +1,13 @@
-rem è¿è¡Œåˆ°å½“å‰ç›®å½•ä¸‹
+rem ÔËĞĞµ½µ±Ç°Ä¿Â¼ÏÂ
 cd /d "%~dp0"
 cd /d "%cd%\"
 
-rem é¦–å…ˆå°†pyæ–‡ä»¶æ‹·è´ä¸€ä»½å¹¶å°†æ–‡ä»¶åé‡å‘½åä¸ºpywåç¼€
-copy ../src/capture_screen.py ../src/capture_screen.pyw
+rem Ê×ÏÈ½«pyÎÄ¼ş¿½±´Ò»·İ²¢½«ÎÄ¼şÃûÖØÃüÃûÎªpywºó×º
+cd ..
+cd src
+copy "capture_screen.py" "capture_screen.pyw"
 
-rem æ‰§è¡Œæ‰“åŒ…æ“ä½œå¹¶è¾“å‡ºç¼–è¯‘åçš„æ–‡ä»¶
+rem Ö´ĞĞ´ò°ü²Ù×÷²¢Êä³ö±àÒëºóµÄÎÄ¼ş
 pyinstaller -F -w --noconsole ../src/capture_screen.pyw --distpath=../../../output
 
 pause
