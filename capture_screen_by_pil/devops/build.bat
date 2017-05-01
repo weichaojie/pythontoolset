@@ -8,6 +8,5 @@ cd src
 copy "capture_screen.py" "capture_screen.pyw"
 
 rem 执行打包操作并输出编译后的文件
-pyInstaller -F -w --noconsole ../src/capture_screen.pyw --distpath=../../../output
-
+python -m PyInstaller -F -w --noconsole ../src/capture_screen.pyw --distpath=../../../output
 pause
