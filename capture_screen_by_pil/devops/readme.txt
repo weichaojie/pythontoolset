@@ -1,3 +1,6 @@
+打包成服务
+pyinstaller -F MyService.py
+
 # 安装服务
 dist\MyService.exe install
 
