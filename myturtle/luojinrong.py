@@ -3,7 +3,7 @@ import turtle
 import time
 import random
 
-print(u"武汉外国语学校小学部三六班--仁爱学堂")
+print(u"武汉外国语学校小学部三(6)班--仁爱学堂")
 
 mypen = turtle.Pen()
 mypen.pensize(3)
