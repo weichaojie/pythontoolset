@@ -21,7 +21,7 @@ def walk(path):
 while (1):
 
     walk(target_walk_path)
-    time.sleep(1)
+    time.sleep(2)
 
     if len(global_files_list) == 0:
         print("休眠15秒")
