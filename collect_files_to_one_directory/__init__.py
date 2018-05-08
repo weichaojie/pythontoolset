@@ -2,11 +2,11 @@ import os
 import shutil
 import time
 
-# search_walk_path = "D:\\My Documents\\下载"
-search_walk_path = "C:\codes\webtoolset"
-target_save_path = "C:\\temp"
-# search_file_type = '.rmvb'
-search_file_type = '.html'
+search_walk_path = "D:\\My Documents\\下载"
+#search_walk_path = "C:\codes\webtoolset"
+target_save_path = "\\\\weichaojie2695\\video\\电影"
+search_file_type = '.rmvb'
+#search_file_type = '.html'
 sleep_time = 180
 global_files_list = ["", ""]
 
