@@ -2,16 +2,16 @@ import os
 import shutil
 import time
 
-search_walk_path = "D:\\My Documents\\下载"
-#search_walk_path = "C:\codes\webtoolset"
-target_save_path = "\\\\weichaojie2695\\video\\电影"
-search_file_type = '.rmvb'
-#search_file_type = '.html'
-sleep_time = 180
+g_search_walk_path = "D:\\My Documents\\下载"
+# g_search_walk_path = "C:\codes\webtoolset"
+g_target_save_path = "\\\\weichaojie2695\\video\\电影"
+g_search_file_type = '.rmvb'
+# g_search_file_type = '.html'
+g_sleep_time = 180
 global_files_list = ["", ""]
 
 
-def walk(path):
+def walk(path, search_file_type):
     global_files_list.clear()
     if not os.path.exists(path):
         return -1
@@ -34,12 +34,12 @@ def move_files_to_directory(path_name_list, target_directory):
 while (1):
 
     # 循环遍历扫描目录
-    walk(search_walk_path)
+    walk(g_search_walk_path, g_search_file_type)
     time.sleep(2)
 
     if len(global_files_list) == 0:
-        print("遍历目录后发现没有合适的文件后进行休眠", sleep_time, "秒，等待有文件准备好")
-        time.sleep(sleep_time)
+        print("遍历目录后发现没有合适的文件后进行休眠", g_sleep_time, "秒，等待有文件准备好")
+        time.sleep(g_sleep_time)
     else:
         # 有合适的文件时进行文件移动操作
-        move_files_to_directory(global_files_list, target_save_path)
+        move_files_to_directory(global_files_list, g_target_save_path)
